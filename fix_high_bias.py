@@ -9,3 +9,10 @@ x_train, y_train, x_cv, y_cv, x_test, y_test = utils.prepare_dataset('data/c2w3_
 model = LinearRegression()
 
 # Adding polynomial features
+# Feature scaling
+# Training the model
+# Compute the training / cross validation MSE
+# Plotting the model
+# Save the plot image
+
+utils.train_plot_poly(model, x_train, y_train, x_cv, y_cv, max_degree=10, baseline=400)

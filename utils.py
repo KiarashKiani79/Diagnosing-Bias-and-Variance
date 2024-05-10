@@ -1,5 +1,5 @@
 import numpy as np
-
+import os
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 plt.style.use('./deeplearning.mplstyle')
@@ -159,6 +159,16 @@ def prepare_dataset(filename):
     
     return x_train, y_train, x_cv, y_cv, x_test, y_test
 
+# *! ------------------------------------------------------------------ !* #   
+
+#* The Following Function Does The Followings:
+#* Add polynomial features to (the training set & the cross-validation set)
+# from degree-1 up to degree-10
+#* Scale (the training set & the cross-validation set)
+#* Train the model which we given to it
+#* Compute the training / cross validation MSE
+#* Plot the results
+#* And Save the plot_image *#
 def train_plot_poly(model, x_train, y_train, x_cv, y_cv, max_degree=10, baseline=None):
     
     train_mses = []
@@ -207,8 +217,16 @@ def train_plot_poly(model, x_train, y_train, x_cv, y_cv, max_degree=10, baseline
     plt.xlabel("degree"); 
     plt.ylabel("MSE"); 
     plt.legend()
-    plt.show()
     
+    # Create the directory if it doesn't exist
+    directory = 'plot_images'
+    if not os.path.exists(directory):
+        os.makedirs(directory)
+    
+    # Save the plot image to the plot_images folder
+    plt.savefig(os.path.join(directory, 'degree of polynomial vs. train and CV MSEs.png'))
+    plt.show()
+# *! ------------------------------------------------------------------ !* #   
 def train_plot_reg_params(reg_params, x_train, y_train, x_cv, y_cv, degree= 1, baseline=None):
     
     train_mses = []
