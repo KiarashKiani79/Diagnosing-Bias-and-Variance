@@ -169,7 +169,13 @@ def prepare_dataset(filename):
 #* Compute the training / cross validation MSE
 #* Plot the results
 #* And Save the plot_image *#
-def train_plot_poly(model, x_train, y_train, x_cv, y_cv, max_degree=10, baseline=None):
+def train_plot_poly(model, 
+                    x_train, y_train,
+                    x_cv,y_cv,
+                    max_degree=10,
+                    baseline=None,
+                    save_image=True,
+                    image_name='degree of polynomial vs. train and CV MSEs'):
     
     train_mses = []
     cv_mses = []
@@ -218,13 +224,15 @@ def train_plot_poly(model, x_train, y_train, x_cv, y_cv, max_degree=10, baseline
     plt.ylabel("MSE"); 
     plt.legend()
     
-    # Create the directory if it doesn't exist
-    directory = 'plot_images'
-    if not os.path.exists(directory):
-        os.makedirs(directory)
-    
-    # Save the plot image to the plot_images folder
-    plt.savefig(os.path.join(directory, 'degree of polynomial vs. train and CV MSEs.png'))
+    if save_image:
+        # Create the directory if it doesn't exist
+        directory = 'plot_images'
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        
+        # Save the plot image to the plot_images folder
+        plt.savefig(os.path.join(directory, f'{image_name}.png'))
+        
     plt.show()
 # *! ------------------------------------------------------------------ !* #   
 def train_plot_reg_params(reg_params, x_train, y_train, x_cv, y_cv, degree= 1, baseline=None):
