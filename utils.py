@@ -1,13 +1,13 @@
 import numpy as np
 import os
+os.environ['TF_CPP_MIN_LOG_LEVEL'] = '1'  # or '2' to filter out both INFO and WARNING messages
 import matplotlib.pyplot as plt
 import matplotlib.lines as mlines
 plt.style.use('./deeplearning.mplstyle')
 
 import tensorflow as tf
-from tensorflow import keras
-from keras.models import Sequential
-from keras.layers import Dense
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Dense
 
 from sklearn.linear_model import LinearRegression, Ridge
 from sklearn.preprocessing import StandardScaler, PolynomialFeatures
