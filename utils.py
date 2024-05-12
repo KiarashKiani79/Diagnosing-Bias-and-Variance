@@ -143,6 +143,8 @@ def build_bc_models():
     
     return models_bc
 
+# *! ------------------------------------------------------------------ !* #   
+
 #* Split DataSet with this proportion => 60% - 20% - 20% *#
 def prepare_dataset(filename):
     
@@ -235,7 +237,13 @@ def train_plot_poly(model,
         
     plt.show()
 # *! ------------------------------------------------------------------ !* #   
-def train_plot_reg_params(reg_params, x_train, y_train, x_cv, y_cv, degree= 1, baseline=None):
+def train_plot_reg_params(reg_params, 
+                          x_train, y_train,
+                          x_cv, y_cv,
+                          degree= 1,
+                          baseline=None,
+                          save_image=True,
+                          image_name="lambda vs. train and CV MSEs"):
     
     train_mses = []
     cv_mses = []
@@ -283,7 +291,18 @@ def train_plot_reg_params(reg_params, x_train, y_train, x_cv, y_cv, degree= 1, b
     plt.xlabel("lambda"); 
     plt.ylabel("MSE"); 
     plt.legend()
+    
+    if save_image:
+        # Create the directory if it doesn't exist
+        directory = 'plot_images'
+        if not os.path.exists(directory):
+            os.makedirs(directory)
+        
+        # Save the plot image to the plot_images folder
+        plt.savefig(os.path.join(directory, f'{image_name}.png'))
+        
     plt.show()
+# *! ------------------------------------------------------------------ !* #   
 
 def train_plot_diff_datasets(model, files, max_degree=10, baseline=None):
     
