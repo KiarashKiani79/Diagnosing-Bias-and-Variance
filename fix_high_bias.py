@@ -45,4 +45,5 @@ utils.train_plot_reg_params(reg_params,
                             x_cv, y_cv,
                             degree= 4,
                             baseline=250,
-                            save_image=False)
+                            save_image=False,
+                            image_name="decrease the value of  𝜆")
